@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.git.desk.controller.RepositoryController"
+>
+
+    <!-- 左侧：仓库结构（分支、文件树） -->
+    <items>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Branches"/>
+            <TreeView fx:id="branchTree"/>
+            <Label text="Files"/>
+            <TreeView fx:id="fileTree"/>
+        </VBox>
+
+        <!-- 右侧：主要内容（提交记录/代码 diff） -->
+        <TabPane fx:id="repoTabPane">
+            <Tab text="Commits">
+                <TableView fx:id="commitTable"/>
+            </Tab>
+            <Tab text="Changes">
+                <SplitPane orientation="VERTICAL">
+                    <ListView fx:id="changedFiles"/>
+                    <TextArea fx:id="diffView"/>
+                </SplitPane>
+            </Tab>
+        </TabPane>
+    </items>
+</SplitPane>
