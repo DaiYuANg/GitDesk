@@ -1,6 +1,8 @@
 package org.git.desk.manager;
 
 import io.avaje.inject.Component;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import lombok.Getter;
 import lombok.val;
 import org.git.desk.model.TabModel;
@@ -9,11 +11,12 @@ import java.util.*;
 
 import static java.util.Collections.unmodifiableCollection;
 import static java.util.Optional.ofNullable;
+import static javafx.collections.FXCollections.emptyObservableMap;
 
 @Component
 public class TabManager {
 
-  private final Map<String, TabModel> tabs = new LinkedHashMap<>();
+  private final ObservableMap<String, TabModel> tabs = emptyObservableMap();
   @Getter
   private TabModel activeTab;
 

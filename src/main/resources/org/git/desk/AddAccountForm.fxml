@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.*?>
+
+<?import org.git.desk.component.PlatformComboBox?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="org.git.desk.controller.AddAccountController"
+          hgap="10" vgap="10" style="-fx-padding: 20;">
+
+  <!-- 平台选择 -->
+  <Label text="Platform:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+  <PlatformComboBox fx:id="platformComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+  <!-- 用户名 -->
+  <Label text="Username:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+  <TextField fx:id="usernameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+  <!-- 密码 -->
+  <Label text="Password:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+  <PasswordField fx:id="passwordField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+  <!-- 提交按钮 -->
+  <Button text="Submit" onAction="#onSubmit"
+          GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+</GridPane>

@@ -3,7 +3,7 @@ module org.git.desk {
   requires javafx.controls;
   requires javafx.fxml;
 
-  requires static org.jetbrains.annotations;
+  requires org.jetbrains.annotations;
   requires java.compiler;
   requires org.slf4j;
   requires org.controlsfx.controls;
@@ -21,8 +21,9 @@ module org.git.desk {
   requires org.apache.commons.io;
   requires com.google.common;
   requires io.soabase.recordbuilder.core;
+    requires org.kohsuke.github.api;
 
-  opens org.git.desk to javafx.fxml;
+    opens org.git.desk to javafx.fxml;
   exports org.git.desk;
   opens org.git.desk.controller to javafx.fxml;
   exports org.git.desk.controller;

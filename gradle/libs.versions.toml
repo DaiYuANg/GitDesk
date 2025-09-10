@@ -1,4 +1,5 @@
 [versions]
+javafx = "21"
 mapstruct = "1.6.3"
 vavr = "0.10.7"
 recordBuilder = "48"

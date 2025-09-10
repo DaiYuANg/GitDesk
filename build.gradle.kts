@@ -13,6 +13,8 @@ plugins {
   alias(libs.plugins.spotless)
   alias(libs.plugins.git)
   alias(libs.plugins.graalvm.native)
+  id("io.freefair.github.dependency-manifest") version "8.14.2"
+  id("com.coditory.manifest") version "1.1.0"
   id("io.miret.etienne.sass") version ("1.5.2")
 }
 
@@ -44,14 +46,14 @@ application {
 }
 
 javafx {
-  version = "21.0.6"
-  modules = listOf("javafx.controls", "javafx.fxml")
+  version = libs.versions.javafx.get()
+  modules = listOf("javafx.controls", "javafx.fxml", "javafx.web")
 }
 
 val avajeInject = "11.6"
 dependencies {
   implementation("dev.dirs:directories:26")
-  implementation("com.github.Dansoftowner:jSystemThemeDetector:3.9.1"){
+  implementation("com.github.Dansoftowner:jSystemThemeDetector:3.9.1") {
     exclude(group = "net.java.dev.jna", module = "jna")
     exclude(group = "net.java.dev.jna", module = "jna-platform")
   }
@@ -71,14 +73,19 @@ dependencies {
   implementation("org.apache.commons:commons-lang3:3.18.0")
   implementation("commons-io:commons-io:2.20.0")
   implementation("com.google.guava:guava:33.4.8-jre")
-  compileOnly(libs.jetbrains.annotation)
+  implementation("org.gitlab4j:gitlab4j-api:6.1.0")
+  implementation(libs.jetbrains.annotation)
   implementation("com.dlsc.formsfx:formsfx-core:11.6.0") {
     exclude(group = "org.openjfx")
   }
   implementation("net.synedra:validatorfx:0.6.1") {
     exclude(group = "org.openjfx")
   }
+  implementation("org.kohsuke:github-api:1.330")
   implementation("org.kordamp.ikonli:ikonli-javafx:12.4.0")
+  implementation("org.kordamp.ikonli:ikonli-simpleicons-pack:12.4.0")
+  implementation("org.kordamp.ikonli:ikonli-devicons-pack:12.4.0")
+  implementation("org.kordamp.ikonli:ikonli-materialdesign2-pack:12.4.0")
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
   implementation(libs.mapstruct)
@@ -97,9 +104,10 @@ jlink {
   launcher {
     name = "app"
   }
+  addExtraDependencies("jetbrains-annotations")
 }
 
-tasks.processResources{
+tasks.processResources {
   dependsOn(tasks.compileSass)
 }
 

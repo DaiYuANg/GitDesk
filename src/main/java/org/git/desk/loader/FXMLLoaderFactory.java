@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
+import static java.util.Objects.requireNonNull;
+
 @UtilityClass
 public class FXMLLoaderFactory {
   private final ControllerFactory c = new ControllerFactory();
@@ -26,9 +28,9 @@ public class FXMLLoaderFactory {
   public Parent load(String fxmlPath) {
     try {
       val fxmlUrl = GitDeskApplication.class.getResource(fxmlPath);
-      Objects.requireNonNull(fxmlUrl, "FXML file not found: " + fxmlPath);
+      requireNonNull(fxmlUrl, "FXML file not found: " + fxmlPath);
 
-      FXMLLoader loader = new FXMLLoader(fxmlUrl);
+      val loader = new FXMLLoader(fxmlUrl);
       loader.setControllerFactory(c);
 
       return loader.load();
@@ -42,10 +44,10 @@ public class FXMLLoaderFactory {
    */
   public <T> T loadWithController(String fxmlPath, Class<T> controllerClass) {
     try {
-      URL fxmlUrl = GitDeskApplication.class.getResource(fxmlPath);
-      Objects.requireNonNull(fxmlUrl, "FXML file not found: " + fxmlPath);
+      val fxmlUrl = GitDeskApplication.class.getResource(fxmlPath);
+      requireNonNull(fxmlUrl, "FXML file not found: " + fxmlPath);
 
-      FXMLLoader loader = new FXMLLoader(fxmlUrl);
+      val loader = new FXMLLoader(fxmlUrl);
       loader.setControllerFactory(c);
 
       loader.load();

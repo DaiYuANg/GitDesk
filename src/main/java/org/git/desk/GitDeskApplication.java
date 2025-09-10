@@ -23,6 +23,7 @@ import lombok.val;
 import org.git.desk.context.DIContext;
 import org.git.desk.controller.LeftStandardStageController;
 import org.git.desk.loader.FXMLLoaderFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -57,69 +58,7 @@ public class GitDeskApplication extends Application {
     stage.show();
   }
 
-  private void setTitle(SimpleStageController controller) {
+  private void setTitle(@NotNull SimpleStageController controller) {
     controller.getTitleLabel().setText("Title");
-
-  }
-
-  private void setContent(BaseStageController controller) {
-    var stage = controller.getStage();
-    var gridPane = new GridPane();
-    gridPane.setHgap(10);
-    gridPane.setVgap(10);
-    gridPane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-
-    var rowIndex = 0;
-    if (controller.getClass() == BaseStageController.class) {
-      var button = new Button("Close");
-      button.setMaxWidth(Double.MAX_VALUE);
-      button.setOnAction(e -> stage.close());
-      GridPane.setHgrow(button, Priority.ALWAYS);
-      GridPane.setColumnSpan(button, 2);
-      gridPane.add(button, 0, rowIndex);
-      rowIndex++;
-    }
-    if (controller instanceof StandardStageController) {
-      gridPane.add(new Label("Max Button Policy"), 0, rowIndex);
-      var polcies = FXCollections.observableArrayList(ResizableStatePolicy.VISIBILITY,
-        ResizableStatePolicy.INTERACTIVITY);
-      var policyComboBox = new ComboBox<ResizableStatePolicy>(polcies);
-      var maxButton = ((StandardStageController) controller).getMaximizeButton();
-      policyComboBox.valueProperty().bindBidirectional(maxButton.policyProperty());
-      gridPane.add(policyComboBox, 1, rowIndex);
-      rowIndex++;
-    }
-
-    var resizableCheckBox = new CheckBox("Resizable");
-    resizableCheckBox.selectedProperty().bindBidirectional(stage.resizableProperty());
-    gridPane.add(resizableCheckBox, 0, rowIndex);
-    var darkThemeCheckBox = new CheckBox("Dark Theme");
-    darkThemeCheckBox.selectedProperty().addListener((ov, oldV, newV) -> {
-      if (newV) {
-        controller.getStage().getScene().getRoot().getStyleClass().add("dark");
-      } else {
-        controller.getStage().getScene().getRoot().getStyleClass().remove("dark");
-      }
-    });
-    gridPane.add(darkThemeCheckBox, 1, rowIndex);
-
-    rowIndex++;
-    EventHandler<StageResizeEvent> started = e -> System.out.println("Resize started");
-    EventHandler<StageResizeEvent> finished = e -> System.out.println("Resize finished");
-    var resizeHandlersCheckBox = new CheckBox("Resize Handlers");
-    resizeHandlersCheckBox.selectedProperty().addListener((ov, oldV, newV) -> {
-      if (newV) {
-        stage.addEventHandler(StageResizeEvent.STAGE_RESIZE_STARTED, started);
-        stage.addEventHandler(StageResizeEvent.STAGE_RESIZE_FINISHED, finished);
-      } else {
-        stage.removeEventHandler(StageResizeEvent.STAGE_RESIZE_STARTED, started);
-        stage.removeEventHandler(StageResizeEvent.STAGE_RESIZE_FINISHED, finished);
-      }
-    });
-    gridPane.add(resizeHandlersCheckBox, 0, rowIndex);
-
-    var content = new BorderPane();
-    content.setCenter(gridPane);
-    controller.setContent(content);
   }
 }
