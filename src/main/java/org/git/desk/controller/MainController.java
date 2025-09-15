@@ -1,6 +1,8 @@
 package org.git.desk.controller;
 
 import io.avaje.inject.Component;
+import io.ebean.QueryBuilder;
+import io.smallrye.mutiny.Uni;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +14,8 @@ import lombok.val;
 import org.git.desk.GitDeskApplication;
 import org.git.desk.entity.Account;
 import org.git.desk.repository.AccountRepository;
+import org.git.desk.service.AccountService;
+import org.kohsuke.github.GitHub;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,9 +36,28 @@ public class MainController implements Initializable {
   @FXML
   private Label statusLabel;
 
+  private final AccountService<GitHub> accountService;
+
   @FXML
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    val accounts = accountRepository.find(Account.class).findList();
+    Uni.createFrom().item(accountRepository.find(Account.class))
+      .map(QueryBuilder::findList)
+      .invoke(a -> {
+        for (Account account : a) {
+          val github = accountService.load(account);
+          try {
+            val repository = github.getMyself().getAllRepositories();
+            log.atInfo().log("Account:{}",account);
+            log.atInfo().log("repo:{}",repository);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+        }
+      })
+      .subscribe()
+      .with(r -> {
+      })
+    ;
     platformList.getItems().addAll("GitHub", "GitLab", "Gitea", "Bitbucket");
     platformList.getSelectionModel().selectedItemProperty().addListener((obs, old, val) -> {
       loadAccountsForPlatform(val);

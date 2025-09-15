@@ -83,6 +83,7 @@ dependencies {
   implementation("net.synedra:validatorfx:0.6.1") {
     exclude(group = "org.openjfx")
   }
+  implementation("com.dlsc.preferencesfx:preferencesfx-core:11.8.0")
   implementation("org.kohsuke:github-api:1.330")
   implementation("org.kordamp.ikonli:ikonli-javafx:12.4.0")
   implementation("org.kordamp.ikonli:ikonli-simpleicons-pack:12.4.0")

@@ -13,9 +13,6 @@ import lombok.val;
 import org.git.desk.constant.GitPlatform;
 import org.git.desk.entity.Account;
 import org.git.desk.repository.AccountRepository;
-import org.git.desk.store.AccountKeystore;
-import org.kohsuke.github.GitHub;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,26 +30,17 @@ public class AddAccountController implements Initializable {
   @FXML
   private PasswordField passwordField;
 
-  private final AccountKeystore keystore;
-
   private final AccountRepository accountRepository;
 
   @SneakyThrows
   @FXML
   private void onSubmit() {
-    String platform = platformComboBox.getValue();
-    String username = usernameField.getText();
-    String password = passwordField.getText();
+    val platform = platformComboBox.getValue();
+    val username = usernameField.getText();
+    val password = passwordField.getText();
 
     log.info("Account submitted -> Platform: {}, Username: {}, Password: {}",
       platform, username, password);
-//    Account acc = new Account("GitHub", null, "myUser", "ghp_123456");
-//    val github = GitHub.connect();
-//    keystore.saveAccount(acc);
-    val github = GitHub.connect(username, password);
-    val repository = github.getMyself().getAllRepositories();
-    log.atInfo().log("self repository:{}", repository);
-    // TODO: 保存到数据库 / 配置文件
     val acc = new Account().setPlatform(GitPlatform.GITHUB).setUsername(username).setPassword(password);
     accountRepository.save(acc);
     platformComboBox.getScene().getWindow().hide(); // 关闭窗口
