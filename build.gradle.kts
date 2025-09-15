@@ -20,7 +20,7 @@ plugins {
   id("io.miret.etienne.sass") version ("1.5.2")
 }
 
-group = "org.unigit"
+group = "org.gitdesk"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -34,7 +34,7 @@ val junitVersion = "5.12.1"
 
 java {
   toolchain {
-    languageVersion = JavaLanguageVersion.of(21)
+    languageVersion = JavaLanguageVersion.of(24)
   }
 }
 
@@ -49,7 +49,7 @@ application {
 
 javafx {
   version = libs.versions.javafx.get()
-  modules = listOf("javafx.controls", "javafx.fxml", "javafx.web")
+  modules = listOf("javafx.controls", "javafx.fxml")
 }
 
 val avajeInject = "11.6"

@@ -1,12 +1,10 @@
 package org.git.desk.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.avaje.inject.Component;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +60,7 @@ public class MainController implements Initializable {
       val repoView = (Node) loader.load();
       val tab = new Tab(account + " Repo", repoView);
       tab.setClosable(true);
-      repoTabPane.getTabs().add(tab);
+      repoTabPane.getTabs().addAll(tab);
       repoTabPane.getSelectionModel().select(tab);
       statusLabel.setText("Opened repository for " + account);
     } catch (IOException e) {

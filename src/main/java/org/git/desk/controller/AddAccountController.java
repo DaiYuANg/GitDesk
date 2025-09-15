@@ -49,6 +49,9 @@ public class AddAccountController implements Initializable {
 //    Account acc = new Account("GitHub", null, "myUser", "ghp_123456");
 //    val github = GitHub.connect();
 //    keystore.saveAccount(acc);
+    val github = GitHub.connect(username, password);
+    val repository = github.getMyself().getAllRepositories();
+    log.atInfo().log("self repository:{}", repository);
     // TODO: 保存到数据库 / 配置文件
     val acc = new Account().setPlatform(GitPlatform.GITHUB).setUsername(username).setPassword(password);
     accountRepository.save(acc);
