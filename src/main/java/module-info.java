@@ -26,6 +26,7 @@ module org.git.desk {
   requires io.ebean.querybean;
   requires org.apache.commons.lang3;
   requires io.smallrye.mutiny;
+  requires javafx.base;
 
   opens org.git.desk to javafx.fxml;
   exports org.git.desk;

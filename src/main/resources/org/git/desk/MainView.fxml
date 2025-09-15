@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import org.git.desk.component.PlatformListView?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.git.desk.controller.MainController"
       stylesheets="/app.css"
@@ -13,7 +14,7 @@
                 <!-- 左边：托管平台 -->
                 <VBox spacing="10" style="-fx-padding:10;">
                     <Label text="Platforms"/>
-                    <ListView fx:id="platformList"/> <!-- GitHub / Gitea / GitLab -->
+                    <PlatformListView fx:id="platformList"/>
                 </VBox>
 
                 <!-- 中间：账户/组织 -->

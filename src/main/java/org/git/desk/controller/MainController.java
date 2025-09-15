@@ -12,9 +12,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.git.desk.GitDeskApplication;
+import org.git.desk.component.PlatformListView;
+import org.git.desk.constant.GitPlatform;
 import org.git.desk.entity.Account;
 import org.git.desk.repository.AccountRepository;
 import org.git.desk.service.AccountService;
+import org.git.desk.viewmodel.AccountViewModel;
+import org.git.desk.viewmodel.PlatformViewModel;
 import org.kohsuke.github.GitHub;
 
 import java.io.IOException;
@@ -28,7 +32,7 @@ public class MainController implements Initializable {
 
   private final AccountRepository accountRepository;
   @FXML
-  private ListView<String> platformList;
+  private PlatformListView platformList;
   @FXML
   private ListView<String> accountList;
   @FXML
@@ -37,6 +41,10 @@ public class MainController implements Initializable {
   private Label statusLabel;
 
   private final AccountService<GitHub> accountService;
+
+  private final AccountViewModel accountViewModel;
+
+  private final PlatformViewModel platformViewModel;
 
   @FXML
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,8 +55,8 @@ public class MainController implements Initializable {
           val github = accountService.load(account);
           try {
             val repository = github.getMyself().getAllRepositories();
-            log.atInfo().log("Account:{}",account);
-            log.atInfo().log("repo:{}",repository);
+            log.atInfo().log("Account:{}", account);
+            log.atInfo().log("repo:{}", repository);
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -58,7 +66,9 @@ public class MainController implements Initializable {
       .with(r -> {
       })
     ;
-    platformList.getItems().addAll("GitHub", "GitLab", "Gitea", "Bitbucket");
+    platformViewModel.loadAvailable();
+    platformList.itemsProperty().bindBidirectional(platformViewModel.getAvailablePlatforms());
+//    platformList.getItems().addAll("GitHub", "GitLab", "Gitea", "Bitbucket");
     platformList.getSelectionModel().selectedItemProperty().addListener((obs, old, val) -> {
       loadAccountsForPlatform(val);
     });
@@ -71,7 +81,7 @@ public class MainController implements Initializable {
     });
   }
 
-  private void loadAccountsForPlatform(String platform) {
+  private void loadAccountsForPlatform(GitPlatform platform) {
     accountList.getItems().clear();
     // TODO: 根据 platform 加载账号
     accountList.getItems().addAll("account1", "account2");
