@@ -3,8 +3,8 @@ import io.miret.etienne.gradle.sass.CompileSass
 plugins {
   java
   application
-  id("org.javamodularity.moduleplugin") version "1.8.15"
-  id("org.openjfx.javafxplugin") version "0.1.0"
+  alias(libs.plugins.moduleplugin)
+  alias(libs.plugins.javafxplugin)
   id("org.beryx.jlink") version "3.1.3"
   id("com.github.johnrengelman.shadow") version "8.1.1"
   alias(libs.plugins.version.check)
@@ -13,6 +13,8 @@ plugins {
   alias(libs.plugins.spotless)
   alias(libs.plugins.git)
   alias(libs.plugins.graalvm.native)
+  alias(libs.plugins.ebean)
+  antlr
   id("io.freefair.github.dependency-manifest") version "8.14.2"
   id("com.coditory.manifest") version "1.1.0"
   id("io.miret.etienne.sass") version ("1.5.2")
@@ -88,10 +90,16 @@ dependencies {
   implementation("org.kordamp.ikonli:ikonli-materialdesign2-pack:12.4.0")
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+  implementation(libs.slf4jJulBridge)
   implementation(libs.mapstruct)
   annotationProcessor(libs.mapstruct.annotation.processor)
   implementation(libs.record.builder.core)
   annotationProcessor(libs.record.builder.processor)
+  implementation(libs.h2)
+  implementation(libs.ebean)
+  annotationProcessor(libs.ebean.querybean.generator)
+  testImplementation(libs.ebean.test)
+  implementation(libs.mutiny)
 }
 
 tasks.withType<Test> {

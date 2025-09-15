@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
+    <changeSet type="apply">
+        <createTable name="account" identityType="external" pkName="pk_account">
+            <column name="id" type="varchar" primaryKey="true"/>
+            <column name="username" type="varchar"/>
+            <column name="password" type="varchar"/>
+            <column name="email" type="varchar"/>
+            <column name="platform" type="varchar(6)" checkConstraint="check ( platform in ('Github','Gitlab','Gitea'))" checkConstraintName="ck_account_platform"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="base_entity" identityType="external" pkName="pk_base_entity">
+            <column name="id" type="varchar" primaryKey="true"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+    </changeSet>
+</migration>

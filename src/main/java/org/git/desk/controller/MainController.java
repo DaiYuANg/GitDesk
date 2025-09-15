@@ -5,11 +5,15 @@ import io.avaje.inject.Component;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.git.desk.GitDeskApplication;
+import org.git.desk.entity.Account;
+import org.git.desk.repository.AccountRepository;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +24,7 @@ import java.util.ResourceBundle;
 @RequiredArgsConstructor
 public class MainController implements Initializable {
 
-  private final ObjectMapper objectMapper;
+  private final AccountRepository accountRepository;
   @FXML
   private ListView<String> platformList;
   @FXML
@@ -32,6 +36,7 @@ public class MainController implements Initializable {
 
   @FXML
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    val accounts = accountRepository.find(Account.class).findList();
     platformList.getItems().addAll("GitHub", "GitLab", "Gitea", "Bitbucket");
     platformList.getSelectionModel().selectedItemProperty().addListener((obs, old, val) -> {
       loadAccountsForPlatform(val);
@@ -53,15 +58,15 @@ public class MainController implements Initializable {
 
   private void openRepository(String account) {
     try {
-      FXMLLoader loader = new FXMLLoader(GitDeskApplication.class.getResource("RepositoryView.fxml"));
-      Parent repoView = loader.load();
-      Tab tab = new Tab(account + " Repo", repoView);
+      val loader = new FXMLLoader(GitDeskApplication.class.getResource("RepositoryView.fxml"));
+      val repoView = (Node) loader.load();
+      val tab = new Tab(account + " Repo", repoView);
       tab.setClosable(true);
       repoTabPane.getTabs().add(tab);
       repoTabPane.getSelectionModel().select(tab);
       statusLabel.setText("Opened repository for " + account);
     } catch (IOException e) {
-      e.printStackTrace();
+      log.atError().log(e.getMessage(), e);
     }
   }
 }

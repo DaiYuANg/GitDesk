@@ -21,12 +21,16 @@ module org.git.desk {
   requires org.apache.commons.io;
   requires com.google.common;
   requires io.soabase.recordbuilder.core;
-    requires org.kohsuke.github.api;
+  requires org.kohsuke.github.api;
+  requires io.ebean.api;
+  requires io.ebean.querybean;
+  requires org.apache.commons.lang3;
 
-    opens org.git.desk to javafx.fxml;
+  opens org.git.desk to javafx.fxml;
   exports org.git.desk;
   opens org.git.desk.controller to javafx.fxml;
   exports org.git.desk.controller;
 
   provides io.avaje.inject.spi.InjectExtension with org.git.desk.DeskModule;
+  provides io.ebean.config.LookupProvider with org.git.desk.lookup.EbeanMethodLookup;
 }

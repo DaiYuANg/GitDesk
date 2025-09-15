@@ -4,10 +4,15 @@ import io.avaje.inject.BeanScope;
 import lombok.Getter;
 import lombok.experimental.Delegate;
 
+import static io.avaje.inject.BeanScope.*;
+
 @Getter
 public enum DIContext {
   INSTANCE;
 
   @Delegate
-  private final BeanScope beanScope = BeanScope.builder().shutdownHook(true).build();
+  @SuppressWarnings({"removal", "deprecation"})
+  private final BeanScope beanScope = builder()
+    .shutdownHook(true)
+    .build();
 }

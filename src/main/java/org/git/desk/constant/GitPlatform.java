@@ -1,12 +1,15 @@
 package org.git.desk.constant;
 
+import io.ebean.annotation.DbEnumValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
+@Getter(onMethod_ = @DbEnumValue)
 @RequiredArgsConstructor
 public enum GitPlatform {
-  GITHUB,
-  GITLAB,
-  GITEA
+  GITHUB("Github"),
+  GITLAB("Gitlab"),
+  GITEA("Gitea");
+
+  private final String platform;
 }

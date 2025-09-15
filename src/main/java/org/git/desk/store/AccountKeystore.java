@@ -56,8 +56,8 @@ public class AccountKeystore {
   }
 
   public @Nullable Account loadAccount(String platform) throws Exception {
-    KeyStore ks = loadKeystore();
-    KeyStore.PasswordProtection protection = new KeyStore.PasswordProtection(STORE_PASSWORD);
+    val ks = loadKeystore();
+    val protection = new KeyStore.PasswordProtection(STORE_PASSWORD);
 
     KeyStore.SecretKeyEntry entry = (KeyStore.SecretKeyEntry) ks.getEntry(platform, protection);
     if (entry != null) {

@@ -33,11 +33,9 @@ import static javafx.application.Application.setUserAgentStylesheet;
 @Slf4j
 public class GitDeskApplication extends Application {
 
-  private final ServiceManager serviceManager = DIContext.INSTANCE.get(ServiceManager.class);
 
   @Override
   public void init() {
-    serviceManager.startAsync();
     val detector = OsThemeDetector.getDetector();
     val isDarkThemeUsed = detector.isDark();
     setUserAgentStylesheet(isDarkThemeUsed ? new PrimerDark().getUserAgentStylesheet() : new PrimerLight().getUserAgentStylesheet());
