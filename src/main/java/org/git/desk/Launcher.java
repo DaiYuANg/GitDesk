@@ -12,6 +12,7 @@ public class Launcher {
   private static void init() {
     val serviceManager = DIContext.INSTANCE.get(ServiceManager.class);
     serviceManager.startAsync();
+    Runtime.getRuntime().addShutdownHook(new Thread(serviceManager::stopAsync));
   }
 
   public static void main(String[] args) {

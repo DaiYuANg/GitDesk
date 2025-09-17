@@ -1,6 +1,5 @@
 package org.git.desk.model;
 
-import io.soabase.recordbuilder.core.RecordBuilder;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,7 +11,7 @@ import lombok.Data;
  */
 @Builder
 @Data
-public class TabModel {
+public class AppPreferences {
   private final String id;
   private final String title;
   private final String fxml;

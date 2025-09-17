@@ -1,11 +1,10 @@
 package org.git.desk.manager;
 
 import io.avaje.inject.Component;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import lombok.Getter;
 import lombok.val;
-import org.git.desk.model.TabModel;
+import org.git.desk.model.AppPreferences;
 
 import java.util.*;
 
@@ -16,16 +15,16 @@ import static javafx.collections.FXCollections.emptyObservableMap;
 @Component
 public class TabManager {
 
-  private final ObservableMap<String, TabModel> tabs = emptyObservableMap();
+  private final ObservableMap<String, AppPreferences> tabs = emptyObservableMap();
   @Getter
-  private TabModel activeTab;
+  private AppPreferences activeTab;
 
   public void openTab(String id, String title, String fxml) {
     if (tabs.containsKey(id)) {
       setActiveTab(id);
       return;
     }
-    val tab = TabModel.builder()
+    val tab = AppPreferences.builder()
       .id(id)
       .title(title)
       .fxml(fxml)
@@ -43,10 +42,10 @@ public class TabManager {
 
   public void setActiveTab(String id) {
     if (activeTab != null) activeTab.setActive(false);
-    ofNullable(activeTab).ifPresent(TabModel::activate);
+    ofNullable(activeTab).ifPresent(AppPreferences::activate);
   }
 
-  public Collection<TabModel> getAllTabs() {
+  public Collection<AppPreferences> getAllTabs() {
     return unmodifiableCollection(tabs.values());
   }
 

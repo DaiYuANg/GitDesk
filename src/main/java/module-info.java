@@ -28,6 +28,9 @@ module org.git.desk {
   requires org.apache.commons.lang3;
   requires io.smallrye.mutiny;
   requires javafx.base;
+  requires com.dlsc.preferencesfx;
+  requires it.unimi.dsi.fastutil;
+  requires java.prefs;
 
   opens org.git.desk to javafx.fxml;
   exports org.git.desk;

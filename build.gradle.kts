@@ -18,7 +18,6 @@ plugins {
   id("io.freefair.github.dependency-manifest") version "8.14.2"
   id("com.coditory.manifest") version "1.1.0"
   id("io.miret.etienne.sass") version ("1.5.2")
-  kotlin("jvm") version "2.2.20"
 }
 
 group = "org.gitdesk"
@@ -93,7 +92,6 @@ dependencies {
   implementation("org.kordamp.ikonli:ikonli-materialdesign2-pack:12.4.0")
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-  implementation("io.github.oshai:kotlin-logging-jvm:7.0.3")
   implementation(libs.fastutil)
   implementation(libs.eclipse.collections.api)
   implementation(libs.eclipse.collections)
