@@ -4,6 +4,7 @@ mapstruct = "1.6.3"
 vavr = "0.10.7"
 recordBuilder = "48"
 ebean = "17.0.1"
+eclipse-collections = "13.0.0"
 
 [plugins]
 version-check = { id = "com.github.ben-manes.versions", version = "0.52.0" }
@@ -42,3 +43,9 @@ ebean-querybean-generator = { group = "io.ebean", name = "querybean-generator", 
 ebean-test = { group = "io.ebean", name = "ebean-test", version.ref = "ebean" }
 
 mutiny = { group = "io.smallrye.reactive", name = "mutiny", version = "2.9.4" }
+
+eclipse-collections-api = { group = "org.eclipse.collections", name = "eclipse-collections-api", version.ref = "eclipse-collections" }
+eclipse-collections = { group = "org.eclipse.collections", name = "eclipse-collections", version.ref = "eclipse-collections" }
+eclipse-collections-forkjoin = { group = "org.eclipse.collections", name = "eclipse-collections-forkjoin", version.ref = "eclipse-collections" }
+eclipse-collections-test-util = { group = "org.eclipse.collections", name = "eclipse-collections-testutils", version.ref = "eclipse-collections" }
+fastutil = { group = "it.unimi.dsi", name = "fastutil", version = "8.5.16" }
