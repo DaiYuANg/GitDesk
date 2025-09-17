@@ -18,11 +18,12 @@ plugins {
   id("io.freefair.github.dependency-manifest") version "8.14.2"
   id("com.coditory.manifest") version "1.1.0"
   id("io.miret.etienne.sass") version ("1.5.2")
+  kotlin("jvm") version "2.2.20"
 }
 
 group = "org.gitdesk"
 version = "1.0-SNAPSHOT"
-
+val moduleName = "org.git.desk"
 repositories {
   mavenLocal()
   mavenCentral()
@@ -33,6 +34,7 @@ repositories {
 val junitVersion = "5.12.1"
 
 java {
+  modularity.inferModulePath.set(true)
   toolchain {
     languageVersion = JavaLanguageVersion.of(24)
   }
@@ -83,7 +85,7 @@ dependencies {
   implementation("net.synedra:validatorfx:0.6.1") {
     exclude(group = "org.openjfx")
   }
-  implementation("com.dlsc.preferencesfx:preferencesfx-core:11.8.0")
+  implementation("com.dlsc.preferencesfx:preferencesfx-core:11.17.0")
   implementation("org.kohsuke:github-api:1.330")
   implementation("org.kordamp.ikonli:ikonli-javafx:12.4.0")
   implementation("org.kordamp.ikonli:ikonli-simpleicons-pack:12.4.0")
@@ -91,6 +93,7 @@ dependencies {
   implementation("org.kordamp.ikonli:ikonli-materialdesign2-pack:12.4.0")
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+  implementation("io.github.oshai:kotlin-logging-jvm:7.0.3")
   implementation(libs.slf4jJulBridge)
   implementation(libs.mapstruct)
   annotationProcessor(libs.mapstruct.annotation.processor)

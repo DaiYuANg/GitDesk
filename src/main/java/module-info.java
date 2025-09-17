@@ -2,6 +2,7 @@
 module org.git.desk {
   requires javafx.controls;
   requires javafx.fxml;
+  requires java.desktop;
 
   requires org.jetbrains.annotations;
   requires java.compiler;
@@ -35,4 +36,5 @@ module org.git.desk {
 
   provides io.avaje.inject.spi.InjectExtension with org.git.desk.DeskModule;
   provides io.ebean.config.LookupProvider with org.git.desk.lookup.EbeanMethodLookup;
+  provides io.ebean.config.EntityClassRegister with org.git.desk.entity.EbeanEntityRegister;
 }

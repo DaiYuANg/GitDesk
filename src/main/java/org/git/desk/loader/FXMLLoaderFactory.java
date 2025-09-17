@@ -15,9 +15,8 @@ import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
-@UtilityClass
 public class FXMLLoaderFactory {
-  private final ControllerFactory c = new ControllerFactory();
+  private static final ControllerFactory c = new ControllerFactory();
 
   /**
    * 从 FXML 文件加载 UI，并通过 Avaje DI 注入 Controller
@@ -25,7 +24,7 @@ public class FXMLLoaderFactory {
    * @param fxmlPath FXML 文件路径（classpath）
    * @return 根节点
    */
-  public Parent load(String fxmlPath) {
+  public static Parent load(String fxmlPath) {
     try {
       val fxmlUrl = GitDeskApplication.class.getResource(fxmlPath);
       requireNonNull(fxmlUrl, "FXML file not found: " + fxmlPath);
@@ -42,7 +41,7 @@ public class FXMLLoaderFactory {
   /**
    * 如果需要拿到 Controller，可以这样用
    */
-  public <T> T loadWithController(String fxmlPath, Class<T> controllerClass) {
+  public static <T> T loadWithController(String fxmlPath, Class<T> controllerClass) {
     try {
       val fxmlUrl = GitDeskApplication.class.getResource(fxmlPath);
       requireNonNull(fxmlUrl, "FXML file not found: " + fxmlPath);

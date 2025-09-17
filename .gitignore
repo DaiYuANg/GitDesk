@@ -156,3 +156,4 @@ deploy/
 javadoc/
 cwallet.sso.lck
 gradle.properties
+.kotlin
