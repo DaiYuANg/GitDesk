@@ -15,8 +15,6 @@ module org.git.desk {
   requires static lombok;
   requires com.fasterxml.jackson.databind;
   requires atlantafx.base;
-  requires com.techsenger.stagepro.core;
-  requires com.techsenger.toolkit.fx;
   requires com.jthemedetector;
   requires dev.dirs;
   requires org.apache.commons.io;

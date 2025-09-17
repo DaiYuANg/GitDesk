@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import org.git.desk.component.FileMenu?>
+<?import org.git.desk.component.HelpMenu?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.git.desk.controller.MenubarController"
+      spacing="6"
+      styleClass="menubar-root">
+
+  <!-- 顶部菜单栏 -->
+  <HBox spacing="10" fx:id="titleBar" alignment="CENTER_LEFT" styleClass="title-bar">
+    <MenuBar HBox.hgrow="ALWAYS">
+      <FileMenu/>
+      <HelpMenu/>
+    </MenuBar>
+    <!-- 右侧控制按钮 -->
+    <ToolBar >
+      <Button fx:id="minButton" text="—" style="-fx-font-size: 14; -fx-pref-width: 30;"/>
+      <Button fx:id="maxButton" text="⬜" style="-fx-font-size: 12; -fx-pref-width: 30;"/>
+      <Button fx:id="closeButton" text="✕" style="-fx-font-size: 12; -fx-pref-width: 30;"/>
+    </ToolBar>
+  </HBox>
+
+  <!-- 下方筛选栏 -->
+  <HBox spacing="10" alignment="CENTER_LEFT" styleClass="filter-bar">
+    <ComboBox fx:id="platformBox" prefWidth="120" promptText="Platform">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Windows"/>
+          <String fx:value="Linux"/>
+          <String fx:value="macOS"/>
+        </FXCollections>
+      </items>
+    </ComboBox>
+
+    <ComboBox fx:id="repositoryBox" prefWidth="150" promptText="Repository">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Repo A"/>
+          <String fx:value="Repo B"/>
+        </FXCollections>
+      </items>
+    </ComboBox>
+
+    <ComboBox fx:id="branchBox" prefWidth="120" promptText="Branch">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="main"/>
+          <String fx:value="dev"/>
+        </FXCollections>
+      </items>
+    </ComboBox>
+
+    <ComboBox fx:id="actionBox" prefWidth="120" promptText="Action">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Build"/>
+          <String fx:value="Deploy"/>
+        </FXCollections>
+      </items>
+    </ComboBox>
+  </HBox>
+</VBox>

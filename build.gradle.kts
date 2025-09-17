@@ -68,11 +68,15 @@ dependencies {
   implementation("io.avaje:avaje-inject:${avajeInject}")
   annotationProcessor("io.avaje:avaje-inject-generator:${avajeInject}")
   implementation("org.controlsfx:controlsfx:11.2.2")
-  implementation("io.github.mkpaz:atlantafx-base:2.1.0")
-  implementation("io.github.snoopy137:language-manager:1.1.2")
-  implementation("org.reactfx:reactfx:2.0-M6")
-  implementation("com.techsenger.stagepro:stagepro-core:1.1.0")
-  implementation("com.techsenger.stagepro:stagepro:1.1.0")
+  implementation("io.github.mkpaz:atlantafx-base:2.1.0"){
+    exclude(group = "org.openjfx")
+  }
+  implementation("io.github.snoopy137:language-manager:1.1.2"){
+    exclude(group = "org.openjfx")
+  }
+  implementation("org.reactfx:reactfx:2.0-M6"){
+    exclude(group = "org.openjfx")
+  }
   implementation("org.apache.commons:commons-lang3:3.18.0")
   implementation("commons-io:commons-io:2.20.0")
   implementation("com.google.guava:guava:33.4.8-jre")
@@ -84,9 +88,13 @@ dependencies {
   implementation("net.synedra:validatorfx:0.6.1") {
     exclude(group = "org.openjfx")
   }
-  implementation("com.dlsc.preferencesfx:preferencesfx-core:11.17.0")
+  implementation("com.dlsc.preferencesfx:preferencesfx-core:11.17.0") {
+    exclude(group = "org.openjfx")
+  }
   implementation("org.kohsuke:github-api:1.330")
-  implementation("org.kordamp.ikonli:ikonli-javafx:12.4.0")
+  implementation("org.kordamp.ikonli:ikonli-javafx:12.4.0"){
+    exclude(group = "org.openjfx")
+  }
   implementation("org.kordamp.ikonli:ikonli-simpleicons-pack:12.4.0")
   implementation("org.kordamp.ikonli:ikonli-devicons-pack:12.4.0")
   implementation("org.kordamp.ikonli:ikonli-materialdesign2-pack:12.4.0")

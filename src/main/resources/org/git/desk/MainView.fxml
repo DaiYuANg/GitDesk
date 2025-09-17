@@ -8,34 +8,35 @@
       fx:controller="org.git.desk.controller.MainController"
       stylesheets="/app.css"
 >
-    <BorderPane VBox.vgrow="ALWAYS">
-        <center>
-            <SplitPane dividerPositions="0.2, 0.4"> <!-- 三栏比例: 左20% 中20% 右60% -->
-                <!-- 左边：托管平台 -->
-                <VBox spacing="10" style="-fx-padding:10;">
-                    <Label text="Platforms"/>
-                    <PlatformListView fx:id="platformList"/>
-                </VBox>
+  <fx:include source="Menubar.fxml"/>
+  <BorderPane VBox.vgrow="ALWAYS">
+    <center>
+      <SplitPane dividerPositions="0.2, 0.4"> <!-- 三栏比例: 左20% 中20% 右60% -->
+        <!-- 左边：托管平台 -->
+        <VBox spacing="10" style="-fx-padding:10;">
+          <Label text="Platforms"/>
+          <PlatformListView fx:id="platformList"/>
+        </VBox>
 
-                <!-- 中间：账户/组织 -->
-                <VBox spacing="10" style="-fx-padding:10;">
-                    <Label text="Accounts"/>
-                    <ListView fx:id="accountList"/> <!-- 某平台下的账号 / org -->
-                </VBox>
+        <!-- 中间：账户/组织 -->
+        <VBox spacing="10" style="-fx-padding:10;">
+          <Label text="Accounts"/>
+          <ListView fx:id="accountList"/> <!-- 某平台下的账号 / org -->
+        </VBox>
 
-                <!-- 右边：仓库Tab面板 -->
-                <TabPane fx:id="repoTabPane">
-                    <!-- 动态添加仓库Tab -->
-                </TabPane>
-            </SplitPane>
-        </center>
+        <!-- 右边：仓库Tab面板 -->
+        <TabPane fx:id="repoTabPane">
+          <!-- 动态添加仓库Tab -->
+        </TabPane>
+      </SplitPane>
+    </center>
 
-        <!-- 底部状态栏 -->
-        <bottom>
-            <HBox spacing="10" style="-fx-padding: 5; -fx-background-color: #eee;">
-                <Label fx:id="statusLabel" text="Ready"/>
-            </HBox>
-        </bottom>
-    </BorderPane>
+    <!-- 底部状态栏 -->
+    <bottom>
+      <HBox spacing="10" style="-fx-border-color: #cccccc transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+        <Label fx:id="statusLabel" text="Ready"/>
+      </HBox>
+    </bottom>
+  </BorderPane>
 
 </VBox>

@@ -4,6 +4,7 @@ import com.dlsc.preferencesfx.PreferencesFx;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import org.git.desk.context.DIContext;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,17 +16,17 @@ public class HelpMenu extends Menu {
   private final MenuItem about;
 
   public HelpMenu() {
-    super("_Help");
+    super("_Help", new FontIcon("mdi2h-help-rhombus"));
 
     settings = new MenuItem("Settings");
     about = new MenuItem("About");
 
     // ───── 设置事件 ─────
-    settings.setOnAction(event -> openPreferences());
-    about.setOnAction(event -> {
-    AboutDialog dialog = new AboutDialog();
-    dialog.showAndWait();
-  });
+    settings.setOnAction(_ -> openPreferences());
+    about.setOnAction(_ -> {
+      AboutDialog dialog = new AboutDialog();
+      dialog.showAndWait();
+    });
 
     // ───── 添加菜单项 ─────
     this.getItems().addAll(settings, about);
