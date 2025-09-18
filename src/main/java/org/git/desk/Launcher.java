@@ -1,22 +1,15 @@
-package org.git.desk;
-
 import com.google.common.util.concurrent.ServiceManager;
 import javafx.application.Application;
-import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.git.desk.GitDeskApplication;
 import org.git.desk.context.DIContext;
 
-@Slf4j
-public class Launcher {
+import static java.lang.Runtime.getRuntime;
 
-  private static void init() {
-    val serviceManager = DIContext.INSTANCE.get(ServiceManager.class);
-    serviceManager.startAsync();
-    Runtime.getRuntime().addShutdownHook(new Thread(serviceManager::stopAsync));
-  }
+void main(String[] args){
+  val serviceManager = DIContext.INSTANCE.get(ServiceManager.class);
+  serviceManager.startAsync();
+  getRuntime().addShutdownHook(new Thread(serviceManager::stopAsync));
 
-  public static void main(String[] args) {
-    init();
-    Application.launch(GitDeskApplication.class, args);
-  }
+  Application.launch(GitDeskApplication.class, args);
 }

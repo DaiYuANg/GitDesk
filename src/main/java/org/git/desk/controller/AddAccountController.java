@@ -1,11 +1,8 @@
 package org.git.desk.controller;
 
+import module javafx.fxml;
 import io.avaje.inject.Component;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.util.Callback;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

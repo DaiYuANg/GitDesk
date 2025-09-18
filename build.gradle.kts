@@ -6,7 +6,7 @@ plugins {
   alias(libs.plugins.moduleplugin)
   alias(libs.plugins.javafxplugin)
   id("org.beryx.jlink") version "3.1.3"
-  id("com.github.johnrengelman.shadow") version "8.1.1"
+  id("com.gradleup.shadow") version "9.1.0"
   alias(libs.plugins.version.check)
   alias(libs.plugins.dotenv)
   alias(libs.plugins.lombok)
