@@ -3,10 +3,10 @@ import io.miret.etienne.gradle.sass.CompileSass
 plugins {
   java
   application
-  alias(libs.plugins.moduleplugin)
+//  alias(libs.plugins.moduleplugin)
   alias(libs.plugins.javafxplugin)
   id("org.beryx.jlink") version "3.1.3"
-  id("com.gradleup.shadow") version "9.1.0"
+  id("com.gradleup.shadow") version "9.2.2"
   alias(libs.plugins.version.check)
   alias(libs.plugins.dotenv)
   alias(libs.plugins.lombok)
@@ -35,7 +35,7 @@ val junitVersion = "5.12.1"
 java {
   modularity.inferModulePath.set(true)
   toolchain {
-    languageVersion = JavaLanguageVersion.of(24)
+    languageVersion = JavaLanguageVersion.of(25)
   }
 }
 
@@ -138,4 +138,8 @@ tasks.compileSass {
   style = CompileSass.Style.expanded
   noErrorCss()
   sourceMap = CompileSass.SourceMap.file
+}
+
+lombok{
+  lombokVersion.set("1.18.42")
 }
