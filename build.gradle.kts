@@ -43,6 +43,11 @@ tasks.withType<JavaCompile> {
   options.encoding = "UTF-8"
 }
 
+java{
+  sourceCompatibility = JavaVersion.VERSION_25
+  targetCompatibility = JavaVersion.VERSION_25
+}
+
 application {
   mainModule.set("org.git.desk")
   mainClass.set("org.git.desk.Launcher")
