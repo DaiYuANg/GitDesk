@@ -16,6 +16,7 @@ plugins {
   id("io.freefair.github.dependency-manifest") version "8.14.2"
   id("com.coditory.manifest") version "1.1.0"
   id("io.miret.etienne.sass") version ("1.5.2")
+  id("io.ebean") version "17.2.0"
 }
 
 group = "org.unigit"
@@ -25,6 +26,7 @@ repositories {
   mavenLocal()
   mavenCentral()
   google()
+  gradlePluginPortal()
   maven("https://jitpack.io")
 }
 
@@ -57,6 +59,10 @@ dependencies {
     exclude(group = "net.java.dev.jna", module = "jna")
     exclude(group = "net.java.dev.jna", module = "jna-platform")
   }
+  // Source: https://mvnrepository.com/artifact/it.unimi.dsi/fastutil
+  implementation("it.unimi.dsi:fastutil:8.5.18")
+  implementation("io.ebean:ebean:17.2.0")
+  annotationProcessor("io.ebean:querybean-generator:17.2.0")
   implementation("net.java.dev.jna:jna:5.10.0-jpms")
   implementation("net.java.dev.jna:jna-platform:5.10.0")
   implementation("ch.qos.logback:logback-classic:1.5.18")
@@ -75,6 +81,9 @@ dependencies {
   implementation("com.google.guava:guava:33.4.8-jre")
   implementation("org.gitlab4j:gitlab4j-api:6.1.0")
   implementation(libs.jetbrains.annotation)
+  implementation("io.smallrye.reactive:mutiny:3.1.0")
+  implementation("com.h2database:h2:2.4.240")
+  implementation("com.dlsc.preferencesfx:preferencesfx-core:11.8.0")
   implementation("com.dlsc.formsfx:formsfx-core:11.6.0") {
     exclude(group = "org.openjfx")
   }

@@ -34,6 +34,8 @@ module org.git.desk {
   exports org.git.desk;
   opens org.git.desk.controller to javafx.fxml;
   exports org.git.desk.controller;
+  exports org.git.desk.constant;
+  exports org.git.desk.component;
 
   provides io.avaje.inject.spi.InjectExtension with org.git.desk.DeskModule;
   provides io.ebean.config.LookupProvider with org.git.desk.lookup.EbeanMethodLookup;
